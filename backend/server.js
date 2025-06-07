@@ -11,11 +11,17 @@ dotenv.config();
 
 const app = express();
 
-// CORS: allow both http://localhost:5500 and http://127.0.0.1:5500
+// CORS: Allow both local frontend (localhost/127.0.0.1) and Netlify frontend
+const allowedOrigins = [
+  "http://localhost:5500",    // Local dev frontend
+  "http://127.0.0.1:5500",   // Local dev frontend
+  "https://dynami-otp-login.netlify.app",  // Netlify frontend URL
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:5500", "http://127.0.0.1:5500"],
-    credentials: true,
+    origin: allowedOrigins,
+    credentials: true,  // Allows cookies to be sent
   })
 );
 
@@ -27,7 +33,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,      // false for dev over HTTP
+      secure: process.env.NODE_ENV === "production", // Only true in production (HTTPS)
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24, // 1 day
     },
