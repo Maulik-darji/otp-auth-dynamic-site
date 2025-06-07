@@ -1,7 +1,7 @@
 // client/main.js
 
 // ← Change this if your backend origin is different
-const API_BASE = "http://localhost:5000/api/auth";
+const API_BASE = "https://otp-auth-backend-xwi0.onrender.com";
 
 const regName       = document.getElementById("reg-name");
 const regAge        = document.getElementById("reg-age");

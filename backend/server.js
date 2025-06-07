@@ -1,17 +1,16 @@
-// backend/server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const session = require("express-session");
-const db = require("./db");
-const authRoutes = require("./routes/auth");
+const db = require("./db"); // Make sure this is correctly set up to connect to your DB
+const authRoutes = require("./routes/auth"); // Assuming auth routes are separate
 
 dotenv.config();
 
 const app = express();
 
-// CORS: Allow both local frontend (localhost/127.0.0.1) and Netlify frontend
+// CORS Configuration
 const allowedOrigins = [
   "http://localhost:5500",    // Local dev frontend
   "http://127.0.0.1:5500",   // Local dev frontend
@@ -22,6 +21,7 @@ app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,  // Allows cookies to be sent
+    methods: ["GET", "POST", "PUT", "DELETE"],  // Allow specific methods
   })
 );
 
@@ -43,7 +43,7 @@ app.use(
 // Mount all /api/auth routes
 app.use("/api/auth", authRoutes);
 
-// (Optional) Serve frontend files if you ever open via http://localhost:5000
+// Serve frontend files in production (if needed)
 app.use(express.static(path.join(__dirname, "../client")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/index.html"));
