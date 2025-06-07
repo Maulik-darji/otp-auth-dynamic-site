@@ -1,0 +1,5 @@
+# Ignore environment secrets
+backend/.env
+
+# Ignore dependencies
+backend/node_modules/

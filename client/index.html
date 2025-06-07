@@ -1,0 +1,66 @@
+<!-- client/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email + OTP Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    section {
+      margin: 20px 0;
+      width: 300px;
+      text-align: center;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+      font-size: 1rem;
+    }
+    #welcome {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Registration -->
+  <section id="register-section">
+    <h2>Register</h2>
+    <input type="text" id="reg-name" placeholder="Name" required />
+    <input type="number" id="reg-age" placeholder="Age" required />
+    <input type="email" id="reg-email" placeholder="Email" required />
+    <input type="password" id="reg-password" placeholder="Password" required />
+    <button id="btn-register">Register</button>
+  </section>
+
+  <!-- Login (request OTP) -->
+  <section id="login-section">
+    <h2>Login (Email → OTP)</h2>
+    <input type="email" id="login-email" placeholder="Email" required />
+    <button id="btn-request-otp">Send OTP</button>
+
+    <form id="otp-form" style="display:none;">
+      <input type="text" id="otp-input" placeholder="Enter OTP" required />
+      <button type="submit">Verify OTP</button>
+    </form>
+  </section>
+
+  <!-- Welcome + Logout -->
+  <section id="welcome-section" style="display:none;">
+    <div id="welcome"></div>
+    <button id="btn-logout">Logout</button>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
